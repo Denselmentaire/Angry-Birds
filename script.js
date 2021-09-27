@@ -3,12 +3,12 @@ var swidth
 swidth = 800;
 
 class Woodrec{
-  constructor(x, y, w, h, vx, vy, c){
+  constructor(x, y, w, h, c, vx, vy){
     this.x = x;
     this.y = y;
     this.h = h;
     this.w = w;
-    this.c = c;
+    this.clor = c;
     this.vx = vx;
     this.vy = vy;
     
@@ -24,7 +24,7 @@ var rec1, rec2, rec3, rec4
 
 function setup() {
 	createCanvas(swidth, 400);
-  rec1 = new Woodrec(500, 335, 210, 15, "#b9624f");
+  rec1 = new Woodrec(500, 335, 210, 15, "brown");
  
 }
 
@@ -34,6 +34,8 @@ function draw(){
   
   rect(0,350,swidth,50);
   
+  fill("#a56f36")
+
   rec1.draw();
   rect(520, 250, 10, 85);
   rect(600, 250, 10, 85);
