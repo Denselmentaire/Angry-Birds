@@ -28,8 +28,12 @@ function setup() {
  
 }
 
+function preload() {
+  backgroundImg = loadimage("download.jpeg")
+}
+
 function draw(){
-  background("cyan");
+  background(backgroundImg);
   fill("#298f12");
   
   rect(0,350,swidth,50);
