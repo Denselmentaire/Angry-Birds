@@ -4,9 +4,8 @@ swidth = 1000;
 vx = 0;
 
 //Classes//
-
 class RedBird{
-  constructor(x, y, w, h, vx, vy){
+  constructor(x, y, w, h, vx, vy, r){
     this.x = x;
     this.y = y;
     this.h = h;
@@ -14,14 +13,14 @@ class RedBird{
     this.clor = "red";
     this.vx = vx;
     this.vy = vy;
+    this.r = r
   }
   draw(){
 
-    ellipse(this.x, this.y,this.w, this.h);
+    ellipse(this.x, this.y,this.w, this.h, this.r);
     this.x += this.vx;
     this.y += this.vy;
   }
-
 }
 
 class GlassRec{
@@ -39,7 +38,6 @@ class GlassRec{
   draw(){
     rect(this.x, this.y,this.w, this.h, this.c, this.vx, this.vy);
   }
-
 }
 
 class GlassEllip{
@@ -57,7 +55,6 @@ class GlassEllip{
   draw(){
     ellipse(this.x, this.y,this.w, this.h, this.c, this.vx, this.vy);
   }
-
 }
 
 class Woodrec{
@@ -75,7 +72,6 @@ class Woodrec{
   draw(){
     rect(this.x, this.y,this.w, this.h, this.c, this.vx, this.vy);
   }
-
 }
 
 var rec1, rec2, rec3, rec4, rec5, rec6, rec7, rec8, ellip1, glassrec1, glassrec2, redb
@@ -119,7 +115,6 @@ function draw(){
   rect(0,350,swidth,50);
 
   line(235, 295, mouseX, mouseY);
-
   //lineY++;
   // keyUp => lineY --;
   // keyDown => lineY ++;
@@ -136,6 +131,7 @@ function draw(){
 
 
   fill("#f41e1e")
+  
   //Birds//
   redb.draw();
 
@@ -144,7 +140,6 @@ function draw(){
   glassrec1.draw();
   glassrec2.draw();
   ellip1.draw();
-
 }
 
 function mouseClicked() {
@@ -155,5 +150,3 @@ function mouseClicked() {
   let speed = xdist / redb.vx;
   redb.vy = (ydist / speed) *-1;
 }
-
-
