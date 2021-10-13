@@ -1,6 +1,4 @@
-var swidth, sheight, vx, mode;
-
-sheight = 400;
+var swidth, mode, vx
 
 swidth = 1000;
 vx = 0;
@@ -65,12 +63,17 @@ class Block {
 
   checkCollision(){
     if(redb.x + redb.w > this.x){
-      // todo: niet rood maken maar blokje verwijderen? ofzo..
-      this.x = 1000;
-      
-    }
-    else{
-      this.x = this.x;
+
+      if(redb.y > this.y){
+
+        var idx = rects.indexOf(this);
+        rects.splice(idx,1);
+
+        //this.x = 1000;
+        redb = new RedBird(235, 295, 25, 25, 0, 0);
+        // redb.vx = redb.vx * -1
+        // redb.vy = redb.vy * -1
+      }     
     }
   }
 }
@@ -82,7 +85,7 @@ var rects = [];
 let bg;
 
 function setup() {
-  createCanvas(swidth, sheight);
+  createCanvas(swidth, 400);
   mode = 0;
   textSize(21);
   rec1 = new Block(700, 335, 210, 15);
@@ -108,29 +111,32 @@ function setup() {
   rects.push(glassrec2);
 
 
-  ellip1 = new GlassEllip(755, 130, 40, 40);
+  ellip1 = new GlassEllip(755, 130, 40, 40, "lime");
 
   redb = new RedBird(235, 295, 25, 25, 0, 0);
 }
 
 var lineY = 0;
 
-function keyPressed(){
-  if (keyCode === ENTER){
-    mode =1;
+function mouseClicked() {
+  if (mode == 1){
+  redb.vx = 3;
+  let xdist = mouseX - redb.x;
+  let ydist = redb.y - mouseY;
+  let speed = xdist / redb.vx;
+  redb.vy = (ydist / speed) * -1;
   }
 }
 
 function draw() {
-  clear();
 
   if (mode == 0){
-     background('white');
-    text('Angry birbs press enter',250, sheight / 2);
+    background('white');
+    text('Angry birbs press enter',250,200);
   }
 
   if (mode == 1){
- background("cyan");
+background("cyan");
   fill("#298f12");
 
   rect(0, 350, swidth, 50);
@@ -161,13 +167,12 @@ function draw() {
   ellip1.draw();
 }
 
-function mouseClicked() {
-  redb.vx = 3;
-  let xdist = mouseX - redb.x;
-  let ydist = redb.y - mouseY;
 
-  let speed = xdist / redb.vx;
-  redb.vy = (ydist / speed) * -1;
-  }
- 
+
+  
+}
+function keyPressed(){
+ if (keyCode === ENTER){
+   mode = 1;
+ }
 }
